@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="execute-php" basedir="." default="notarget">
+    <adhoc-task name="exec-php">
+        <![CDATA[
+			class FooTest extends Task {
+				private $filename;
+                private $params;
+                private $dir;
+				function setFilename($file) {
+					$this->filename = $file;
+				}
+
+				function setParams($params) {
+					$this->params = $params;
+				}
+
+				function setDir($dir) {
+				    $this->dir = $dir;
+				}
+
+
+				function main() {
+				    if(is_dir($this->dir)){
+                        chdir($this->dir);
+                    }
+					include($this->filename);
+					if (function_exists("run_task")) {
+					    eval("run_task(". $this->params . ");");
+					    run_task(blah);
+					}
+				}
+			}
+		]]>
+    </adhoc-task>
+    <target name="notarget">
+    </target>
+</project>
