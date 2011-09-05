@@ -2,36 +2,68 @@
 <project name="execute-php" basedir="." default="notarget">
     <adhoc-task name="exec-php">
         <![CDATA[
-			class FooTest extends Task {
-				private $filename;
-                private $params;
+            class ExecPhpTask extends Task
+            {
+                private $filename;
                 private $dir;
-				function setFilename($file) {
-					$this->filename = $file;
-				}
+                private $args = array();
 
-				function setParams($params) {
-					$this->params = $params;
-				}
+                function setFilename($file)
+                {
+                    $this->filename = $file;
+                }
 
-				function setDir($dir) {
-				    $this->dir = $dir;
-				}
+                function setDir($dir)
+                {
+                    $this->dir = $dir;
+                }
 
+                public function __set($name, $value)
+                {
+                    $this->args[$name] = $value;
+                }
 
-				function main() {
-				    if(is_dir($this->dir)){
-                        chdir($this->dir);
+                public function addArg(Arg $arg){
+                    $this->args[$arg->name] = $arg->value;
+                }
+
+                function main()
+                {
+                    if (is_dir($this->dir)) {
+                        set_include_path(get_include_path() . PATH_SEPARATOR . $this->dir);
                     }
-					include($this->filename);
-					if (function_exists("run_task")) {
-					    eval("run_task(". $this->params . ");");
-					    run_task(blah);
-					}
-				}
-			}
-		]]>
+                    foreach($this->args as $name => $value){
+                        $$name = $value;
+                    }
+                    include($this->filename);
+                }
+            }
+            ]]>
     </adhoc-task>
+    <adhoc-type name="arg">
+        <![CDATA[
+            class Arg extends DataType {
+                private $name;
+                private $value;
+
+                public function setName($name){
+                    $this->name = $name;
+                }
+
+                public function getName(){
+                    return $this->name;
+                }
+
+                public function setValue($value){
+                    $this->value = $value;
+                }
+
+                public function getValue(){
+                    return $this->value;
+                }
+            }
+         ]]>
+    </adhoc-type>
     <target name="notarget">
     </target>
 </project>

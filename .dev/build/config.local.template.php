@@ -17,14 +17,14 @@
 ; ----------------------
 ;
 [database_details]
-hostspec = "@db_host"
-socket   = "@db_socket"
-port     = "@db_port"
-database = "@db_database"
-username = "@db_username"
-password = "@db_password"
-persistent = @db_persistent
-table_prefix = "@db_table_prefix"
+hostspec = "@db_host@"
+socket   = "@db_socket@"
+port     = "@db_port@"
+database = "@db_database@"
+username = "@db_username@"
+password = "@db_password@"
+persistent = @db_persistent@
+table_prefix = "@db_table_prefix@"
 
 ;
 ; ----------------------
@@ -81,9 +81,9 @@ servers=
 ;   https://www.yourhost.com/
 ;
 [host_details]
-http_host = "@host_http"
-https_host = "@host_https"
-web_dir = "@host_webdir"
+http_host = "@host_http@"
+https_host = "@host_https@"
+web_dir = "@host_webdir@"
 
 
 ;
@@ -151,7 +151,7 @@ auth_code = ""
 developer_mode = Off
 
 [marketplace]
-url = '@marketplace_url'
+url = '@marketplace_url@'
 
 ;
 ; Other options

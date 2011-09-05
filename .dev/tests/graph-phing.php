@@ -1,5 +1,4 @@
 <?php
-function run_task($csv, $dir, $prevDir){
 // Input arguments
 /*array_shift($_SERVER['argv']);
 $csv = array_shift($_SERVER['argv']);
@@ -424,5 +423,5 @@ if (file_exists($csv) && filesize($csv) > 0) {
 		}
 	}
 }
-}
+
 ?>

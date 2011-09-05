@@ -9,7 +9,7 @@
 
 
 // Define test mode: 1 - deployment test; 0 - web tests
-define('TEST_DEPLOYMENT_MODE', @TEST_DEPLOYMENT_MODE);
+define('TEST_DEPLOYMENT_MODE', @TEST_DEPLOYMENT_MODE@);
 
 
 // MySQL executables
@@ -18,10 +18,10 @@ define('TEST_DEPLOYMENT_MODE', @TEST_DEPLOYMENT_MODE);
 
 
 // Directory where xlite-tests.config.php is located
-define('XLITE_DEV_CONFIG_DIR', '@XLITE_DEV_CONFIG_DIR');
+define('XLITE_DEV_CONFIG_DIR', '@XLITE_DEV_CONFIG_DIR@');
 
 // Directory with external libs (PHPUnit etc)
-define('XLITE_DEV_LIB_DIR', '@XLITE_DEV_LIB_DIR');
+define('XLITE_DEV_LIB_DIR', '@XLITE_DEV_LIB_DIR@');
 
 /**
  * List of directories PHPUnit cloned from GitHub: http://www.phpunit.de/
@@ -41,31 +41,31 @@ $__include_paths = array(
 
 
 // URL of LiteCommerce store (path only, w/o script)
-define('SELENIUM_SOURCE_URL_ADMIN', '@SELENIUM_SOURCE_URL_ADMIN');
+define('SELENIUM_SOURCE_URL_ADMIN', '@SELENIUM_SOURCE_URL_ADMIN@');
 
 if (1 === TEST_DEPLOYMENT_MODE) {
 
     // URL of Drupal+LC store
-    define('SELENIUM_SOURCE_URL', '@SELENIUM_SOURCE_URL');
+    define('SELENIUM_SOURCE_URL', '@SELENIUM_SOURCE_URL@');
 
     // Directory where Drupal installed
-    define('DRUPAL_SITE_PATH', '@DRUPAL_SITE_PATH');
+    define('DRUPAL_SITE_PATH', '@DRUPAL_SITE_PATH@');
 
 } else {
 
     // URL of Drupal+LC store
-    define('SELENIUM_SOURCE_URL', '@SELENIUM_SOURCE_URL');
+    define('SELENIUM_SOURCE_URL', '@SELENIUM_SOURCE_URL@');
 
     // Directory where Drupal installed
-    define('DRUPAL_SITE_PATH', '@DRUPAL_SITE_PATH');
+    define('DRUPAL_SITE_PATH', '@DRUPAL_SITE_PATH@');
 }
 
 // Settings for screenshots capturing (on failed tests)
-define('SELENIUM_SCREENSHOTS_PATH', '@SELENIUM_SCREENSHOTS_PATH');
-define('SELENIUM_SCREENSHOTS_URL', '@SELENIUM_SCREENSHOTS_URL');
+define('SELENIUM_SCREENSHOTS_PATH', '@SELENIUM_SCREENSHOTS_PATH@');
+define('SELENIUM_SCREENSHOTS_URL', '@SELENIUM_SCREENSHOTS_URL@');
 
 // Selenium server host
-define('SELENIUM_SERVER', '@SELENIUM_SERVER');
+define('SELENIUM_SERVER', '@SELENIUM_SERVER@');
 
 // Selenium TTL (sec)
 define('SELENIUM_TTL', 60);

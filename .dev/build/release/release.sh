@@ -236,6 +236,7 @@ while getopts "b:cd:f:lstuh" option; do
 		c) CLEAR_OUTPUT_DIR=1 ;;
 		d) PARAM_OUTPUT_DIR=$OPTARG ;;
 		f) CONFIG=$OPTARG ;;
+		r) USE_REAL_PATH=1 ;;
 		l) LOCAL_REPO=1;;
 		s) SAFE_MODE=1 ;;
 		t) TEST_MODE=1 ;;
@@ -246,9 +247,7 @@ done
 
 shift $((OPTIND-1));
 
-
-T=`dirname $0`
-BASE_DIR=`realpath $T`
+BASE_DIR=`pwd`;
 
 
 if [ "`uname`" = "Linux" ]; then
@@ -330,7 +329,6 @@ fi
 
 [ "x${OUTPUT_DIR}" = "x" ] && OUTPUT_DIR="${BASE_DIR}/output"
 
-OUTPUT_DIR=`realpath ${OUTPUT_DIR}`
 
 if [ -d $OUTPUT_DIR -a ! $CLEAR_OUTPUT_DIR ]; then
 	if [ ! $SAFE_MODE ]; then
@@ -418,7 +416,7 @@ if [ ! $SAFE_MODE ]; then
 		prepare_directory $TMP_XLITE_REPO $XLITE_REPO
 	else
 		echo -n "Getting LiteCommerce core from local git repository...";
-		prepare_directory $TMP_XLITE_REPO `realpath ${BASE_DIR}/../../../`
+		prepare_directory $TMP_XLITE_REPO "$(dirname $(dirname $(dirname ${BASE_DIR})))"
 	fi
 
 
