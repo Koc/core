@@ -235,10 +235,11 @@ return;
 
             $this->assertJqueryPresent($s, "$message ($mode mode)");
         }
-
+        //TODO: тормоза где-то здесь!!!!
         /*
          * Now test how UI elements are enabled/disabled
          */
+        $this->trace("Now test how UI elements are enabled/disabled");
         foreach (array(false, true) as $sortBox) {
 
             foreach (array(false, true) as $displayMode) {
@@ -267,6 +268,7 @@ return;
 
             }
         }
+        $this->trace("Finish enable/disable test");
     }
 
     /**

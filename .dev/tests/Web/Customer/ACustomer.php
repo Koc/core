@@ -29,7 +29,6 @@ require_once __DIR__ . '/../AWeb.php';
 
 abstract class XLite_Web_Customer_ACustomer extends XLite_Web_AWeb
 {
-
     protected function logIn($username = 'master', $password = 'master')
     {
         $this->open('user');
@@ -46,7 +45,7 @@ abstract class XLite_Web_Customer_ACustomer extends XLite_Web_AWeb
         $this->assertTrue($this->isLoggedIn(), 'Check that user is logged in successfully');
     }
 
-    protected function logOut($pageIsOpened = false)
+    protected function logOut()
     {
         $this->open('user/logout');
 
@@ -56,6 +55,11 @@ abstract class XLite_Web_Customer_ACustomer extends XLite_Web_AWeb
     protected function isLoggedIn()
     {
         return $this->isElementPresent('//a[@class="log-in" and contains(@href,"user/logout")]');
+    }
+
+    protected function isAdmin()
+    {
+        return $this->isLoggedIn() && $this->isElementPresent('toolbar');
     }
 
     protected function getActiveProduct()

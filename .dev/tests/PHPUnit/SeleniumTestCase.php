@@ -111,6 +111,8 @@ abstract class XLite_Tests_SeleniumTestCase extends PHPUnit_Extensions_SeleniumT
      */
     protected $baseURL = null;
 
+    protected $startTime;
+
     /**
      * Unknown nut allowed CSS properties list
      *
@@ -547,6 +549,8 @@ abstract class XLite_Tests_SeleniumTestCase extends PHPUnit_Extensions_SeleniumT
      */
     protected function setUp()
     {
+        $this->startTime[] = microtime(true);
+        $this->traceStamp = microtime(true);
         set_time_limit(0);
 
         // Delay before each test
@@ -565,6 +569,32 @@ abstract class XLite_Tests_SeleniumTestCase extends PHPUnit_Extensions_SeleniumT
         }
     }
 
+
+    private function getTimeIntervals($timeStamps)
+    {
+        $first = array_shift($timeStamps);
+        $timeIntervals = array();
+        foreach($timeStamps as $second)
+        {
+            $timeIntervals[] = $second - $first;
+            $first = $second;
+        }
+        return $timeIntervals;
+    }
+
+    private function printTimeIntervals($ints)
+    {
+        return array_reduce($ints, function($acc, $val) { $acc .= ' ; ' . $val; return $acc;}, "");
+    }
+
+    protected $traceStamp;
+
+    protected function trace($msg){
+        $time = ($this->traceStamp) ? microtime(true) - $this->traceStamp : 0;
+        print "\n Trace " . $msg . " time: " . $time;
+        $this->traceStamp = microtime(true);
+    }
+
     /**
      * PHPUnit default function.
      * It's not recommended to redefine this method
@@ -576,7 +606,9 @@ abstract class XLite_Tests_SeleniumTestCase extends PHPUnit_Extensions_SeleniumT
      */
     protected function tearDown()
     {
-        $message = $this->getMessage('', get_called_class(), $this->getName());
+        $this->startTime[] = microtime(true);
+        $timeInt = $this->getTimeIntervals($this->startTime);
+        $message = $this->getMessage('..time: ' . self::printTimeIntervals($timeInt) . "..", get_called_class(), $this->getName());
         echo (PHP_EOL . sprintf('%\'.-86s', trim($message)));
     }
 

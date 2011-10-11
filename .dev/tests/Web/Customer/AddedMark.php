@@ -39,6 +39,7 @@ class XLite_Web_Customer_AddedMark extends XLite_Web_Customer_ACustomer
      */
     public function testAddedMarkAfterRefresh()
     {
+        $this->deleteCookie('xid', 'path=/~humanoid/drupal-lc/xlite_cms/, domain=.http://xcart2-530.crtdev.local/, recurse=true');
         $this->openCategoryPage();
         $id = $this->getProductId(1);
 
@@ -71,6 +72,9 @@ class XLite_Web_Customer_AddedMark extends XLite_Web_Customer_ACustomer
      */
     public function testAddedMarkAfterDrag()
     {
+        $this->open('');
+        $this->deleteCookie('xid', 'path=/~humanoid/drupal-lc/xlite_cms/, domain=.http://xcart2-530.crtdev.local/, recurse=true');
+        $this->refresh();
         $products = $this->openCategoryPage();
         $id1 = $this->getProductId(1);
         $id2 = $this->getProductId(2);

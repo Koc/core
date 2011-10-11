@@ -6,15 +6,16 @@ class WebTest extends CWebDriverTestCase
 
     protected function setUp()
     {
-        parent::setUp(SELENIUM_SERVER, 4444, 'firefox C:\Program Files\Firefox_5\firefox.exe');
-        $this->setBrowserUrl(SELENIUM_SOURCE_URL_ADMIN);
+        parent::setUp('humanoid:197f2527-8e4e-4bad-aee8-a14f8e6fb329@ondemand.saucelabs.com',
+                      80,
+                      'firefox',
+                      '5',
+                      array('version' => '5',
+                           'platform' => 'XP',
+                           'name' => 'Testing Selenium 2 in Python at Sauce'));
+        $this->setBrowserUrl("http://xcart2-530.crtdev.local/~humanoid/core/src/");
     }
 
-    public function testTitle()
-    {
-        $this->open(SELENIUM_SOURCE_URL_ADMIN);
-
-        $this->assertEquals('Access denied', $this->getBodyText());
-    }
 }
+
 ?>

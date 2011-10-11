@@ -102,6 +102,9 @@ class XLite_Web_Customer_Authentication extends XLite_Web_Customer_ACustomer
         );
         $this->click("css=.blockUI a.close-link");
         // Wait while the popup box is fading black
+        //$this->waitForJqueryElement('.blockUI form#user-login:visible',
+        //                             10000,
+        //                             "Login form is visible after closing the popup window");
         sleep(10);
         $this->assertJqueryNotPresent(
             ".blockUI form#user-login:visible",
@@ -147,6 +150,10 @@ class XLite_Web_Customer_Authentication extends XLite_Web_Customer_ACustomer
         );
         $this->click("css=.blockUI a.close-link");
         // Wait while the popup box is fading black
+
+//        $this->waitForJqueryElement(".blockUI form#user-pass:visible",
+//                                     10000,
+//                                     "Password form is visible after closing the popup window");
         sleep(10);
         $this->assertJqueryNotPresent(
             ".blockUI form#user-pass:visible",

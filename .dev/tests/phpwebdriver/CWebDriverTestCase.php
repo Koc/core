@@ -37,16 +37,16 @@ class CWebDriverTestCase extends PHPUnit_Framework_TestCase {
         }
     }
 
-    protected function setUp( $host="localhost", $port="4444", $browser="firefox" ) {
+    protected function setUp( $host="localhost", $port="4444", $browser="firefox", $version="", $caps=array() ) {
         parent::setUp();
         $this->webdriver = new WebDriver( $host, $port );
-        $this->webdriver->connect( $browser );
+        $this->webdriver->connect( $browser,$version, $caps );
     }
 
     protected function tearDown() {
         $this->webdriver->close();
     }
-    
+
     public function refresh(){
         $this->webdriver->refresh();
     }
@@ -58,7 +58,7 @@ class CWebDriverTestCase extends PHPUnit_Framework_TestCase {
     public function forward(){
         $this->webdriver->forward();
     }
-    
+
     public function focusFrame($frameId){
         $this->webdriver->focusFrame($frameId);
     }

@@ -1,4 +1,4 @@
-#! /usr/bin/php
+#! @phpPath@
 <?php
 /**
  * Example file - copy this file to /u/$USER/bin
